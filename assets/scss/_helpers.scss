@@ -1,0 +1,87 @@
+.width-max, .w-max {width: 100% !important; max-width: auto;}
+.w-100px {width: 100px !important;}
+.w-125px {width: 125px !important;}
+.w-150px {width: 150px !important;}
+.w-200px {width: 200px !important;}
+.w-250px {width: 250px !important;}
+.w-300px {width: 300px !important;}
+.w-350px {width: 350px !important;}
+.w-400px {width: 400px !important;}
+
+.h-100px {height: 100px !important;}
+.h-150px {height: 150px !important;}
+.h-200px {height: 200px !important;}
+.h-250px {height: 250px !important;}
+.h-300px {height: 300px !important;}
+.h-350px {height: 350px !important;}
+.h-400px {height: 400px !important;}
+.h-450px {height: 450px !important;}
+.h-450px {height: 450px !important;}
+
+.clickable {cursor: pointer;}
+.btn-icon {cursor: pointer;}
+.text-bold {font-weight: bold !important;}
+.text-strong {font-weight: 600 !important;}
+.text-normal {font-weight: normal !important;}
+.text-left {text-align: left !important;}
+.text-uppercase {text-transform: uppercase;}
+.text-capitalize {text-transform: capitalize;}
+.vertical-middle {vertical-align: middle;}
+.vertical-bottom {vertical-align: bottom;}
+
+.color-black {color: $color-black;}
+.color-grey {color: $color-grey;}
+
+.font-size-sm {
+  font-size: $base-font-size - 2;
+  line-height: $base-font-size + 3;
+}
+
+.required {
+  display: inline-block;
+  font-style: normal;
+  color: $color-danger-hover;
+  &::after {
+    display: inline-block;
+    content: '*';
+  }
+}
+
+.fake-form-control {
+  color: #333;
+  font-size: $base-font-size - 2;
+  padding: 2*$base-padding 3*$base-padding;
+  display: block;
+}
+
+.d-block {display: block;}
+.d-inline-block {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.no-scroll {overflow-y: hidden;}
+
+
+@for $i from 1 through 9 {
+  .opacity-0#{$i} {opacity: 0.1 * $i}
+}
+
+@for $i from 1 through 10 {
+  .w-#{$i}0pr {width: 10% * $i;}
+}
+
+// Padding & margin helpers
+@for $i from 0 through 10 {
+  .p-#{$i}  {padding: $base-padding * $i !important}
+  .pt-#{$i} {padding-top: $base-padding * $i !important}
+  .pb-#{$i} {padding-bottom: $base-padding * $i !important}
+  .pl-#{$i} {padding-left: $base-padding * $i !important}
+  .pr-#{$i} {padding-right: $base-padding * $i !important}
+
+  .m-#{$i}  {margin: $base-margin * $i !important}
+  .mt-#{$i} {margin-top: $base-margin * $i !important}
+  .mb-#{$i} {margin-bottom: $base-margin * $i !important}
+  .ml-#{$i} {margin-left: $base-margin * $i !important}
+  .mr-#{$i} {margin-right: $base-margin * $i !important}
+}
