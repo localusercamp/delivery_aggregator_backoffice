@@ -5,29 +5,14 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
-            <label for="email"> Электронный адрес </label>
-            <password-input 
-              v-model="email"
-              type="text"
-              disableStrength
-              disableToggle
-            >
-            </password-input>
+            <label> Номер телефона </label>
+            <input v-model="phone" class="form-control" />
           </div>
           <div class="form-group">
-            <label for="password"> Пароль </label>
-            <password-input 
-              v-model="password"
-              disableStrength
-            >
-            </password-input>
-            <validation-alert v-model="errors" match="invalid_credentials"></validation-alert>
+            <label> Пароль </label>
+            <input v-model="password" class="form-control" />
           </div>
-          <fish-button
-            type="primary"
-            @click="signin()"
-            class="button basic w100"
-          >
+          <fish-button type="primary" @click="signin()" class="button basic w-100pr mt-2">
             Войти
           </fish-button>
           <div class="row">
@@ -46,7 +31,7 @@ export default {
 
   data() {
     return {
-      email: null,
+      phone: null,
       password: null,
       errors: null,
     };
@@ -54,14 +39,19 @@ export default {
 
   methods: {
     signin() {
-      this.$axios.$post('api/app/auth/signin', { email: this.email, password: this.password })
-        .then((e) => {
+      const credentials = {
+        phone: this.phone,
+        password: this.password,
+      };
+
+      this.$axios.$post('auth/provider/signin', credentials)
+        .then((response) => {
           this.$store.dispatch('setAuth', {
-            access_token: e.token.access_token,
-            expires: Math.floor(Date.now() / 1000) + e.token.expires_in,
+            access_token: response.jwt.access_token,
+            expires: Math.floor(Date.now() / 1000) + response.jwt.expires_in,
           });
-          this.$store.dispatch('setUser', e.user);
-          this.$router.push('/home');
+          this.$store.dispatch('setUser', response.user);
+          this.$router.push('/dashboard');
         })
         .catch((error) => this.errors = error.response.data.errors)
         .finally(() => this.loading = false);
@@ -69,6 +59,5 @@ export default {
   },
 
   middleware: ['guest'],
-
-};
+}
 </script>

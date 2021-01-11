@@ -6,7 +6,7 @@ const ls = new SecureLS({ isCompression: false });
 
 export default ({ store }) => {
   createPersistedState({
-    paths: ['auth'],
+    paths: ['auth', 'user'],
     storage: {
       getItem: (key) => ls.get(key),
       setItem: (key, value) => ls.set(key, value),

@@ -7,9 +7,9 @@ const getCliArgValue = (argName) => {
 };
 
 const getAppUrl = () => {
-  const tmAppUrl = getCliArgValue('APP_URL');
-  if (tmAppUrl !== undefined) {
-    return tmAppUrl;
+  const appUrl = getCliArgValue('APP_URL');
+  if (appUrl !== undefined) {
+    return appUrl;
   }
 
   const env = getCliArgValue('ENV');

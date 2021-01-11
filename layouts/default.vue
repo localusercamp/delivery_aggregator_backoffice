@@ -6,15 +6,8 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import Header from '@/pages/Header';
-  import Footer from '../components/Footer.vue';
 
   export default {
-
-    components: {
-      Header,
-      Footer,
-    },
 
     computed: {
       ...mapGetters([
