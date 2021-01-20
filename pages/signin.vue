@@ -44,16 +44,17 @@ export default {
         password: this.password,
       };
 
-      this.$axios.$post('auth/provider/signin', credentials)
+      this.$axios.post('auth/provider/signin', credentials)
         .then((response) => {
-          this.$store.dispatch('setAuth', {
-            access_token: response.jwt.access_token,
-            expires: Math.floor(Date.now() / 1000) + response.jwt.expires_in,
+          this.$store.dispatch('auth/setJWT', {
+            access_token: response.data.jwt.access_token,
+            expires: Math.floor(Date.now() / 1000) + response.data.jwt.expires_in,
           });
-          this.$store.dispatch('setUser', response.user);
+          this.$store.dispatch('user/setUser', response.data.user);
+          this.$store.dispatch('cart/init');
           this.$router.push('/dashboard');
         })
-        .catch((error) => this.errors = error.response.data.errors)
+        .catch((error) => console.log(error))
         .finally(() => this.loading = false);
     },
   },

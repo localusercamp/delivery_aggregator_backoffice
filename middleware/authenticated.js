@@ -1,4 +1,4 @@
 export default function ({ store, redirect }) {
-  if (store.getters.authenticated) return;
+  if (store.getters['auth/authenticated']) return;
   return redirect('/signin');
 }

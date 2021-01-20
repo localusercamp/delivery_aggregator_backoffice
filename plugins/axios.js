@@ -1,7 +1,8 @@
 export default ({ store, $axios, redirect }) => {
   $axios.onRequest((config) => {
-    const { access_token } = store.getters.auth;
-    const { expires } = store.getters.auth;
+    console.log(store);
+    const { access_token } = store.getters['auth/jwt'];
+    const { expires } = store.getters['auth/jwt'];
     const now = Math.floor(Date.now() / 1000);
     if (!!expires && Number(expires) <= Number(now)) {
       store.dispatch('signout');
@@ -10,6 +11,7 @@ export default ({ store, $axios, redirect }) => {
     access_token
       ? config.headers = { Authorization: `Bearer ${access_token}`, 'Accept-Language': 'ru' }
       : config.headers = { 'Accept-Language': 'ru' };
+    config.headers['X-Requested-With'] = 'XMLHttpRequest';
     return config;
   });
 

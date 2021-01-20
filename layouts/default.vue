@@ -10,9 +10,9 @@
   export default {
 
     computed: {
-      ...mapGetters([
-        'authenticated',
-      ]),
+      ...mapGetters({
+        authenticated: 'auth/authenticated',
+      }),
     },
 
     watch: {

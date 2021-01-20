@@ -2,7 +2,6 @@
   <div>
     <div>Пользователь: {{ `${user.firstname} ${user.lastname}` }}</div>
     <div @click="logout()">Выйти</div>
-    <div @click="drop()">drop</div>
     <br>
 
     <div class="row">
@@ -15,6 +14,11 @@
         <nuxt-link to="products">
           <button>
             Все продукты
+          </button>
+        </nuxt-link>
+        <nuxt-link to="cart">
+          <button>
+            Моя корзина
           </button>
         </nuxt-link>
       </div>
@@ -32,23 +36,16 @@ export default {
   },
 
   computed: {
-    ...mapGetters([
-      'user'
-    ]),
+    ...mapGetters({
+      user: 'user/user'
+    }),
   },
 
   methods: {
     logout() {
-      this.$axios.post('auth/signout');
-    },
-
-    drop() {
-      this.$store.dispatch('setAuth', ({}));
-      this.$store.dispatch('setUser', ({}));
-    },
-
-    showUser() {
-      console.log(this.user);
+      this.$axios.post('auth/signout').then((response) => {
+        this.$store.dispatch('signout');
+      });
     },
   },
 

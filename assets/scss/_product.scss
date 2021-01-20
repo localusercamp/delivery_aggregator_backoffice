@@ -1,0 +1,22 @@
+.product {
+  width: 150px;
+  height: 300px;
+  border: 1px solid black;
+  display: inline-block;
+  margin: 2px;
+}
+
+.product-option {
+  &.iterative {
+    .input {
+      display: inline-block;
+    }
+    .minus, .plus {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      padding-left: 5px;
+      border: 1px solid black;
+    }
+  }
+}
