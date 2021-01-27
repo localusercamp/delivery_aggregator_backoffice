@@ -1,0 +1,325 @@
+/**
+ * Sidebar
+ */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding: 0;
+  background-color: $color-purple-dark;
+  width: 255px;
+  .heading {
+    border-bottom: 1px solid $color-gray-dark;
+  }
+  .logo-wrapper {
+    display: block;
+    padding: 32px 0;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    &:hover,
+    &:active {
+      text-decoration: none;
+    }
+    .logo {
+      display: inline-block;
+      height: 83px;
+      width: 132px;
+      // background: url('../img/logo-light.svg') no-repeat;
+      background-size: cover;
+    }
+  }
+
+  nav {
+    margin: 0;
+    padding: 0;
+    display: block;
+    ul {
+      margin: 0;
+      padding: 0;
+      display: block;
+      font-size: 16px !important;
+      li {
+        padding: 0;
+        margin: 0;
+
+        a {
+          color: #A4A6B3;
+          display: block;
+          padding: $base-padding * 3 $base-padding * 4;
+          .nav-icon {
+            display: inline-block;
+            vertical-align: top;
+            margin: 0 $base-padding*4 0 0;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+          }
+
+          &:hover {
+            color: #EBF8F8 !important;
+            .nav-icon {
+              color: #EBF8F8;
+              fill: #EBF8F8 !important;
+            }
+          }
+          &.nuxt-link-active {
+            color: #EBF8F8;
+            text-decoration: none;
+            background-color: rgba(158, 161, 179, 0.08);
+            box-shadow: inset 3px 0 0 0 #EBF8F8;
+            border: none;
+            .nav-icon {color: #EBF8F8;}
+          }
+        }
+      }
+    }
+  }
+
+  aside > .fish.menu > .item:not(.submenu) {
+    &:hover {
+      background-color: rgba(30, 52, 173, 0.08) !important;
+    }
+    &.active {
+      color: #EBF8F8;
+      text-decoration: none;
+      background-color: rgba(158, 161, 179, 0.08) !important;
+      box-shadow: inset 3px 0 0 0 #EBF8F8;
+      border: none;
+      .nav-icon {color: #EBF8F8;}
+    }
+  }
+
+  .fish.menu {
+    background-color: transparent;
+    padding: $base-padding*2 0;
+
+    .nav-icon {
+      color: #63667A;
+      margin: 0 $base-padding*4 0 $base-padding;
+    }
+    > .item {
+      &:hover {background-color: rgba(30, 52, 173, 0.08);}
+    }
+    .item {
+      color: #A4A6B3;
+      display: block;
+      padding: $base-padding * 3 $base-padding * 4 ;
+      font-size: 16px !important;
+      &:hover {
+        color: #EBF8F8 ;
+        background-color: rgba(30, 52, 173, 0.08);
+        .nav-icon {color: #EBF8F8;}
+      }
+
+      &.active {
+        color: #EBF8F8;
+        text-decoration: none;
+        background-color: rgba(158, 161, 179, 0.08);
+        box-shadow: inset 3px 0 0 0 #EBF8F8;
+        border: none;
+        .nav-icon {color: #EBF8F8;}
+      }
+
+      .title {
+        color: #A4A6B3;
+        font-weight: normal;
+        font-size: $base-font-size - 2;
+        text-transform: uppercase;
+        padding: $base-padding * 3 $base-padding*4;
+        margin: 0;
+        display: block;
+        position: relative;
+        &:hover {
+          color: #EBF8F8 !important;
+          background: rgba(158, 161, 179, 0.08);
+        }
+      }
+
+      &.submenu {
+        border-top: 1px solid $color-gray-dark;
+        padding: 0;
+        &:hover {
+          color: inherit;
+          background: inherit;
+          // .nav-icon {color: #EBF8F8;}
+        }
+        &.active {
+          color: inherit;
+          text-decoration: none;
+          background: inherit;
+          box-shadow: none;
+          border: none;
+          border-top: 1px solid $color-gray-dark;
+          .nav-icon {
+            color: #63667A;
+          }
+        }
+
+        &:after {
+          color: #A4A6B3;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          font-size: 20px;
+        }
+
+        .title {
+          color: #A4A6B3;
+          font-weight: normal;
+          font-size: $base-font-size - 2;
+          text-transform: uppercase;
+          padding: $base-padding*3 $base-padding*4;
+          margin: 0;
+          display: block;
+          position: relative;
+          &:hover {
+            color: #EBF8F8 !important;
+            background: rgba(158, 161, 179, 0.08);
+          }
+        }
+
+        .item {
+          color: #A4A6B3;
+          display: block;
+          padding: $base-padding * 3 $base-padding * 4 ;
+          font-size: 16px !important;
+          &:hover {
+            color: #EBF8F8 ;
+            background: rgba(158, 161, 179, 0.08);
+            .nav-icon {color: #EBF8F8;}
+          }
+          &.active {
+            color: #EBF8F8;
+            text-decoration: none;
+            background: rgba(158, 161, 179, 0.08);
+            box-shadow: inset 3px 0 0 0 #EBF8F8;
+            border: none;
+            .nav-icon {color: #EBF8F8;}
+          }
+        }
+      }
+    }
+  }
+
+
+  .nav {
+    color: #fff;
+    font-size: 16px !important;
+    padding: 8px 0;
+    border-bottom: 1px solid $color-gray-dark;
+
+    .title {
+      color: #A4A6B3;
+      font-weight: normal;
+      font-size: $base-font-size - 2;
+      text-transform: uppercase;
+      padding: $base-padding*2 $base-padding*4;
+      margin: 0;
+      display: block;
+      position: relative;
+      &:after {
+        display: inline-block;
+        font-family: 'FontAwesome';
+        font-weight: 900;
+        content: "\f107";
+        position: absolute;
+        top: 1px;
+        right: 10px;
+        font-size: 20px;
+      }
+    }
+    > ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: block;
+    }
+    > ul > li {display: block;}
+    ul  li > a {
+      color: #A4A6B3;
+      display: block;
+    }
+    > ul > li > a {padding: $base-padding * 3 $base-padding * 4 ;}
+    > ul > li > ul > li > a {padding: $base-padding $base-padding * 2;}
+    ul > li > a:hover {
+      color: #EBF8F8 !important;
+      background: hsla(231, 12%, 66%, 0.08);
+      .nav-icon {color: #EBF8F8;}
+    }
+    ul > li > a.nuxt-link-active,
+    ul > li > a.nuxt-link-active:hover  {
+      color: #EBF8F8;
+      text-decoration: none;
+      background: hsla(231, 12%, 66%, 0.08);
+      box-shadow: inset 3px 0 0 0 #EBF8F8;
+      .nav-icon {color: #EBF8F8;}
+    }
+  }
+}
+
+.sidebar-user {background-color: #0747A6;}
+.sidebar-user .heading {background-color: #07357c;}
+.sidebar-user .nav {border-bottom-color: #07357c;}
+.sidebar-user .nav ul > li > a:hover {background: #073c8d;}
+.sidebar-user .nav ul > li > a.active,
+.sidebar-user .nav ul > li > a.active:hover  {background: #07357c;}
+
+.sidebar-manager {background-color: #62687f;}
+.sidebar-manager .heading {background-color: #343b4c;}
+.sidebar-manager .nav {border-bottom-color: #484c5c;}
+.sidebar-manager .nav ul > li > a:hover {background: #484c5c;}
+.sidebar-manager .nav ul > li > a.active,
+.sidebar-manager .nav ul > li > a.active:hover  {background: #484c5c;}
+
+.sidebar-admin {background-color: #343b4c;}
+.sidebar-admin .heading {background-color: #262626;}
+.sidebar-admin .nav {border-bottom-color: rgb(37, 38, 43);}
+.sidebar-admin .nav ul > li > a:hover {background: rgb(212, 83, 73);}
+.sidebar-admin .nav ul > li > a.active,
+.sidebar-admin .nav ul > li > a.active:hover {background: rgb(194, 64, 54);}
+
+@media (max-width: 1366px) {
+  .sidebar {
+    width: 80px;
+    .logo-wrapper {
+      padding: 30px 0;
+      .logo {
+        height: 40px;
+        width: 47px;
+        // background: url('../img/logo-mini.svg') no-repeat;
+      }
+    }
+
+    nav {
+      ul {
+        font-size: 11px !important;
+        line-height: 12px;
+        li {
+          position: relative;
+          .tm-tag {
+            float: none;
+            position: absolute;
+            font-size: 10px;
+            line-height: 17px;
+            height: 15px;
+            min-width: 15px;
+            padding: 0 $base-padding;
+            right: 13px;
+            top: 5px;
+          }
+          a {
+            padding: $base-padding * 3 0;
+            text-align: center;
+            .nav-icon {
+              display: block;
+              margin: 0 auto 3px auto;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -35,6 +35,7 @@ export default {
   plugins: [
     '~/plugins/axios.js',
     '~/plugins/components.js',
+    '~/plugins/ui.js',
     { src: '~/plugins/persistedstate.js', mode: 'client' },
     { src: '~/plugins/lodash.js', mode: 'client' },
     { src: '~/plugins/fish-ui.js', mode: 'client' },

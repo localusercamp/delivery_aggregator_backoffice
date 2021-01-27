@@ -1,0 +1,136 @@
+/**
+ * Guest Layout
+ */
+.promo {
+  // height: 100vh;
+  position: relative;
+  max-height: auto;
+  min-height: 100vh;
+  background-color: $color-purple-dark;
+  padding: 80px 0 150px 0;
+}
+.promo-container {
+  position: relative;
+  z-index: 2;
+}
+.promo-header {
+  text-align: center;
+  img {
+    display: inline-block;
+    width: 175px;
+    height: 110px;
+    margin: 0 0 50px 0;
+  }
+}
+.base-footer {
+  background-color: $color-purple-dark;
+  border-top: 1px solid #585C74;
+  padding: $base-padding * 4 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+
+  .fong-logo {
+    color: $color-grey;
+    fill: $color-grey !important;
+    &:hover {
+    color: $color-gray-light !important;
+    fill: $color-gray-light !important;
+    }
+  }
+
+  a {
+    display: inline-block;
+    position: relative;
+    color: $color-grey;
+  }
+  a:hover {
+    color: $color-gray-light !important;
+  }
+  .container-fluid {
+    max-width: 1120px;
+    .row > div {
+      padding: 0;
+      text-align: center;
+    }
+  }
+  .link {
+    padding: $base-padding * 2 0;
+    &::after {
+      position: absolute;
+      left: 50%;
+      bottom: $base-padding;
+      display: block;
+      content: '';
+      width: 0;
+      height: 1px;
+      background-color: #585C74;
+    }
+  }
+
+  .link:hover {
+    &::after {
+      left: 0;
+      width: 100%;
+    }
+  }
+}
+
+.step-title {
+  padding: $base-padding*6 0 0 $base-padding*6;
+  margin: 0;
+}
+
+/**
+ * Base system page template
+ */
+.page-tpl {
+  .page-heading {
+    margin-right: 355px;
+    padding: $base-padding * 8 $base-padding * 7;
+    .page-title {
+      margin: 0;
+      padding: 0;
+    }
+  }
+  .tools-panel {padding: 0 0 $base-padding * 4 0;}
+  .page-content {padding: 0 $base-padding * 7 $base-padding * 7 $base-padding * 7;}
+}
+
+.error-page {
+  position: relative;
+  height: 100vh;
+  max-height: 100vh;
+  min-height: 650px;
+  background-color: #fff;
+  // background-image: url('../img/404.svg');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  padding: $base-padding*20 0 150px 0;
+
+  .status-code {
+    position: fixed;
+    right: 60px;
+    bottom: 120px;
+    font-size: 90px;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .logo {margin: 0 0 $base-padding*20 0;}
+  .error-container {
+    width: 600px;
+    margin: 0 auto;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  h1 {
+    font-size: 48px;
+    line-height: 71px;
+    letter-spacing: 0.3px;
+    margin: 0 0 30px 0;
+  }
+  p {margin-bottom: 30px;}
+}

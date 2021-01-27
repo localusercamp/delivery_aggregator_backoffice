@@ -59,6 +59,7 @@ export default {
     },
   },
 
+  layout: 'auth',
   middleware: ['guest'],
 }
 </script>

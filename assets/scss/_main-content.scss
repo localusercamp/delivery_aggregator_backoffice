@@ -1,0 +1,30 @@
+$col-right-width: 355px;
+
+.main-content {margin: 0 0 0 255px;}
+.main-row {
+  display: flex;
+  width: 100%;
+  padding: $base-padding*2 0 0 0;
+}
+
+.col-full,
+.col-center,
+.col-right {
+  box-sizing: border-box;
+  position: relative;
+  min-height: 1px;
+  vertical-align: top;
+}
+.col-center {
+  width: calc(100% - #{$col-right-width}) !important;
+  padding-right: 30px;
+}
+.col-right {
+  width: $col-right-width !important;
+  min-width: $col-right-width !important;
+}
+.col-full {width: 100%;}
+
+@media (max-width: 1366px) {
+  .main-content {margin: 0 0 0 80px;}
+}

@@ -1,9 +1,5 @@
 <template>
   <div>
-    <div>Пользователь: {{ `${user.firstname} ${user.lastname}` }}</div>
-    <div @click="logout()">Выйти</div>
-    <br>
-
     <div class="row">
       <div class="col-md-2">
         <nuxt-link to="products/create">
@@ -37,16 +33,7 @@ export default {
 
   computed: {
     ...mapGetters({
-      user: 'user/user'
     }),
-  },
-
-  methods: {
-    logout() {
-      this.$axios.post('auth/signout').then((response) => {
-        this.$store.dispatch('signout');
-      });
-    },
   },
 
   middleware: ['authenticated'],
