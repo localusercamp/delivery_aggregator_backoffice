@@ -6,22 +6,27 @@
         <div class="col-xs-12">
           <div class="form-group">
             <label> Номер телефона </label>
-            <input v-model="phone" class="form-control" />
+            <MaskedInput
+              mask="\+\7 (111) 111 11-11"
+              placeholder="+7 (___) ___ __-__"
+              class="form-control"
+              @input="getValueFromMaskedInput"
+            />
           </div>
           <div class="form-group">
             <label>Пароль</label>
-            <input v-model="password" class="form-control" />
+            <input v-model="password" type="password" class="form-control" />
           </div>
-          <div v-if="isInCodeVerificationState" class="form-group">
+          <div v-if="statemanager.isInCodeVerificationState" class="form-group">
             <label>Код из СМС</label>
             <input v-model="code" class="form-control" />
           </div>
-          <fish-button v-if="isInCredentailsState" type="primary" @click="toVerification()" class="button basic w-100pr mt-2">
+          <el-button v-if="statemanager.isInCredentailsState" type="primary" @click="toVerification()" class="button basic w-100pr mt-2">
             Продолжить
-          </fish-button>
-          <fish-button v-if="isInCodeVerificationState" type="primary" @click="signup()" class="button basic w-100pr mt-2">
+          </el-button>
+          <el-button v-if="statemanager.isInCodeVerificationState" type="primary" @click="signup()" class="button basic w-100pr mt-2">
             Зарегистрироваться
-          </fish-button>
+          </el-button>
           <div class="row">
             <div class="text-center mt-2">
               <NuxtLink to="/signin" class="text-center">Уже зарегистрированы? Войти</NuxtLink>
@@ -35,10 +40,13 @@
 
 <script>
 
-const CREDENTAILS_STATE = 1;
-const CODE_VERIFICATION_STATE = 2;
+import StateManager from '~/classes/StateManager'
+
+const statemanager = new StateManager(['credentails', 'code_verification']);
 
 export default {
+
+  name: 'dsf',
   data() {
     return {
       phone: null,
@@ -47,17 +55,8 @@ export default {
       errors: null,
       code: null,
 
-      state: CREDENTAILS_STATE,
+      statemanager,
     };
-  },
-
-  computed: {
-    isInCredentailsState() {
-      return this.state === CREDENTAILS_STATE;
-    },
-    isInCodeVerificationState() {
-      return this.state === CODE_VERIFICATION_STATE;
-    }
   },
 
   methods: {
@@ -69,7 +68,7 @@ export default {
 
       this.$axios.$post('auth/provider/send-verification-sms', credentials)
         .then(() => {
-          this.state = CODE_VERIFICATION_STATE;
+          this.statemanager.switchToCodeVerificationState();
         })
     },
 
@@ -84,7 +83,6 @@ export default {
 
       this.$axios.$post('auth/provider/signup', credentials)
         .then(() => {
-          // this.$router.push('/signin');
           this.$axios.post('auth/provider/signin', credentials)
             .then((response) => {
               this.$store.dispatch('auth/setJWT', {
@@ -97,6 +95,10 @@ export default {
             })
         })
         .finally(() => this.loading = false);
+    },
+
+    getValueFromMaskedInput(masked, unmasked) {
+      this.phone = unmasked.replace(/_/g, '');
     },
   },
 

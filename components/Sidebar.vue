@@ -9,7 +9,7 @@
 
     <nav>
       <ul>
-        <li><nuxt-link to="/products"><tm-icon type="info" size="small" class="nav-icon"/>Услуги</nuxt-link></li>
+        <li><nuxt-link to="/product"><tm-icon type="info" size="small" class="nav-icon"/>Продукты</nuxt-link></li>
         <li><nuxt-link to="/dashboard"><tm-icon type="info" size="small" class="nav-icon"/> дэшбоард </nuxt-link></li>
         <li @click="signout()"><a>Выйти</a></li>
       </ul>
@@ -58,25 +58,25 @@
           this.$store.dispatch('signout');
         });
       },
-      lockBodyScroll() {
-        document.body.style.overflowY = 'hidden';
-      },
-      unlockBodyScroll() {
-        document.body.style.overflowY = 'auto';
-      },
-      subscribe() {
-        this.$comet.restart({dev_id: this.$config.cometDevId, user_id: this.user.id, user_key: this.user.hash});
-        this.pipe_id = this.$comet.subscription('on_moderation_counters', this.countersHandler);
-        console.log('subscribed!');
-      },
-      countersHandler({data}) {
-        this.applyCounterValue(data);
-      },
-      applyCounterValue(counter) {
-        _.forEach(counter, (value, key) => {
-          this.counters[key] = value;
-        });
-      },
+      // lockBodyScroll() {
+      //   document.body.style.overflowY = 'hidden';
+      // },
+      // unlockBodyScroll() {
+      //   document.body.style.overflowY = 'auto';
+      // },
+      // subscribe() {
+      //   this.$comet.restart({dev_id: this.$config.cometDevId, user_id: this.user.id, user_key: this.user.hash});
+      //   this.pipe_id = this.$comet.subscription('on_moderation_counters', this.countersHandler);
+      //   console.log('subscribed!');
+      // },
+      // countersHandler({data}) {
+      //   this.applyCounterValue(data);
+      // },
+      // applyCounterValue(counter) {
+      //   _.forEach(counter, (value, key) => {
+      //     this.counters[key] = value;
+      //   });
+      // },
     },
     mounted() {
       if (this.canSubscribe) {

@@ -2,12 +2,12 @@
   <div>
     <div class="row">
       <div class="col-md-2">
-        <nuxt-link to="products/create">
+        <nuxt-link to="/product/create">
           <button>
             Создать продукт
           </button>
         </nuxt-link>
-        <nuxt-link to="products">
+        <nuxt-link to="/product">
           <button>
             Все продукты
           </button>

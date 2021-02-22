@@ -6,15 +6,20 @@
         <div class="col-xs-12">
           <div class="form-group">
             <label> Номер телефона </label>
-            <input v-model="phone" class="form-control" />
+            <MaskedInput
+              mask="\+\7 (111) 111 11-11"
+              placeholder="+7 (___) ___ __-__"
+              class="form-control"
+              @input="getValueFromMaskedInput"
+            />
           </div>
           <div class="form-group">
             <label> Пароль </label>
-            <input v-model="password" class="form-control" />
+            <input v-model="password" type="password" class="form-control" />
           </div>
-          <fish-button type="primary" @click="signin()" class="button basic w-100pr mt-2">
+          <el-button type="primary" @click="signin()" class="button basic w-100pr mt-2">
             Войти
-          </fish-button>
+          </el-button>
           <div class="row">
             <div class="text-center mt-2">
               <NuxtLink to="/signup" class="text-center">Еще не зарегистрированы? <br> Регистрация</NuxtLink>
@@ -56,6 +61,10 @@ export default {
         })
         .catch((error) => console.log(error))
         .finally(() => this.loading = false);
+    },
+
+    getValueFromMaskedInput(masked, unmasked) {
+      this.phone = unmasked.replace(/_/g, '');
     },
   },
 
