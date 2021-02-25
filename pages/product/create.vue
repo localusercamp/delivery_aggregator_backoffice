@@ -45,9 +45,7 @@
         <el-col :span="24">
           <el-button type="success" class="w-100pr" @click="store()" :loading="loading">Создать</el-button>
         </el-col>
-        <!-- <el-col :span="24">
-          <el-button type="info" disabled>sd</el-button>
-        </el-col> -->
+
       </el-row>
     </div>
   </div>
@@ -85,7 +83,17 @@ export default {
       this.poster = file;
     },
 
+    dataIsValid() {
+      if (!this?.poster?.raw) {
+        this.$noty.error('Необходимо загрузить изображение.');
+        return false;
+      }
+      return true;
+    },
+
     store() {
+      if (!this.dataIsValid()) return;
+
       const config = {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -102,7 +110,14 @@ export default {
             .then(() => {
 
             })
+            .catch((e) => {
+              const error_messages = err.response.data;
+              for (const error_message of error_messages) {
+                this.$noty.error(error_message);
+              }
+            })
         });
+        this.$noty.error('ss');
       this.loading = false;
     },
   },

@@ -38,6 +38,7 @@ export default {
     '~/plugins/ui.js',
     { src: '~/plugins/persistedstate.js', mode: 'client' },
     { src: '~/plugins/lodash.js', mode: 'client' },
+    { src: '~/plugins/noty.js', mode: 'client' },
     { src: '~/plugins/element-ui.js', mode: 'client' },
   ],
   buildModules: [],

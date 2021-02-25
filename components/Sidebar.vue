@@ -54,9 +54,8 @@
         // return true;
       },
       signout() {
-        this.$axios.post('auth/signout').then(() => {
-          this.$store.dispatch('signout');
-        });
+        this.$axios.post('auth/signout');
+        this.$store.dispatch('signout');
       },
       // lockBodyScroll() {
       //   document.body.style.overflowY = 'hidden';
