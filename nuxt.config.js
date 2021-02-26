@@ -50,6 +50,9 @@ export default {
     baseURL: appUrl,
     browserBaseURL: appUrl,
   },
+  router: {
+    middleware: ['redirect']
+  },
   build: {
     extend(config, ctx) {
     },

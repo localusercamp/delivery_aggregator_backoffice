@@ -54,14 +54,13 @@
 <script>
 import Product from '~/classes/product/Product'
 import Tag from '~/classes/Tag'
-import {showMultipleErrors} from '~/helpers/noty'
-import {getFormDataFromObject} from '~/helpers/form-data';
 
 export default {
   data() {
     return {
       image_url: '',
       product: null,
+      poster: null,
       loading: false,
     }
   },
@@ -81,12 +80,12 @@ export default {
   methods: {
     successfullyUploaded(res, file) {
       this.image_url = URL.createObjectURL(file.raw);
-      this.product.poster = file;
+      this.poster = file;
     },
 
     dataIsValid() {
-      if (!this?.product?.poster?.raw) {
-        this.$noty.error('Необходимо загрузить изображение');
+      if (!this?.poster?.raw) {
+        this.$noty.error('Необходимо загрузить изображение.');
         return false;
       }
       return true;
@@ -101,24 +100,25 @@ export default {
         }
       };
 
-      // const formData = new FormData();
-      // formData.append('poster', this.product.poster.raw);
-
-      // for (const prop in this.product) {
-      //   formData.append('poster', this.poster.raw);
-      // }
-
-      const product = getFormDataFromObject(this.product);
+      const formData = new FormData();
+      formData.append('poster', this.poster.raw);
 
       this.loading = true;
-      this.$axios.post('/app/product', product)
+      this.$axios.put('/app/product', this.product)
         .then((response) => {
+          this.$axios.post(`/app/product/${response.data.product.id}/change-poster`, formData, config)
+            .then(() => {
 
-        })
-        .catch((e) => {
-          showMultipleErrors(e.response.data.errors);
-        })
-        .finally(() => this.loading = false);
+            })
+            .catch((e) => {
+              const error_messages = err.response.data;
+              for (const error_message of error_messages) {
+                this.$noty.error(error_message);
+              }
+            })
+        });
+        this.$noty.error('ss');
+      this.loading = false;
     },
   },
 

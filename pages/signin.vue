@@ -51,6 +51,8 @@ export default {
 
       this.$axios.post('auth/provider/signin', credentials)
         .then((response) => {
+          console.log({expires_in: response.data.jwt.expires_in, now: Math.floor(Date.now() / 1000)});
+
           this.$store.dispatch('auth/setJWT', {
             access_token: response.data.jwt.access_token,
             expires: Math.floor(Date.now() / 1000) + response.data.jwt.expires_in,

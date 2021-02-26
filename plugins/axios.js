@@ -1,6 +1,5 @@
 export default ({ store, $axios, redirect }) => {
   $axios.onRequest((config) => {
-    console.log(store);
     const { access_token } = store.getters['auth/jwt'];
     const { expires } = store.getters['auth/jwt'];
     const now = Math.floor(Date.now() / 1000);

@@ -13,7 +13,13 @@ export const actions = {
 export const getters = {
   user: state => {
     const { user } = state;
-    // assign some custom things to user
+
+    // user.startRoute = user.isOperator ? '/analytics' : (
+    //   !!user.company?.approved_at ? '/dashboard' : '/getting-started'
+    // );
+
+    user.startRoute = '/dashboard';
+
     return user;
   },
 };
