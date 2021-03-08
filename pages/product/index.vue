@@ -12,8 +12,6 @@
           </el-input>
         </div>
 
-        <div></div>
-
         <div>
           <nuxt-link to="/product/create">
             <el-button round type="success">Создать</el-button>
@@ -21,22 +19,11 @@
         </div>
       </div>
 
-      <!-- <div class="product-card-shadow">
-        <img
-          class="product-card-image"
-          src="https://zdnet1.cbsistatic.com/hub/i/r/2018/12/04/3a6fd09a-e489-4d56-84e4-06ca9b181deb/resize/1200x900/d137c2ef8739fab722241753d1233315/apple-presents-best-of-2018-apps-12032018big-jpg-large.jpg"
-        />
-        <div class="product-card-body">
-          <div class="text-title">asdasdasd</div>
-        </div>
-      </div> -->
-
       <div v-if="init">
-        <ProductCard
-          v-for="product of products"
+        <ProductCard v-for="product of products"
           :key="product.uid"
-          :product="product">
-        </ProductCard>
+          :product="product"
+        />
       </div>
     </div>
   </div>
@@ -58,6 +45,8 @@ export default {
       await this.$axios.get("app/product").then((response) => {
         this.products = response.data.product_list;
         Product.$adopt(this.products);
+        this.user = this.$store.getters['user/user'];
+        console.log(this.user);
       });
     },
 

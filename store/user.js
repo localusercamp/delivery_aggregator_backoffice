@@ -1,3 +1,5 @@
+import User from "~/classes/User";
+
 export const state = () => ({
   user: {},
 });
@@ -12,13 +14,14 @@ export const actions = {
 
 export const getters = {
   user: state => {
-    const { user } = state;
+    const user = User.$adapt(state.user);
 
     // user.startRoute = user.isOperator ? '/analytics' : (
     //   !!user.company?.approved_at ? '/dashboard' : '/getting-started'
     // );
 
-    user.startRoute = '/dashboard';
+    // user.startRoute = '/dashboard';
+    console.log(user);
 
     return user;
   },

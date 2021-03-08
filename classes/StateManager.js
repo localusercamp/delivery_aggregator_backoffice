@@ -1,5 +1,9 @@
-export default class StateManager
+import Entity from '~/classes/Entity'
+
+export default class StateManager extends Entity
 {
+  currentState = 0;
+
 	constructor(states) {
   	let i = 0;
   	for (let state of states) {
@@ -11,16 +15,14 @@ export default class StateManager
 
       Object.defineProperty(this, state_name, {
         get: () => real_i,
-        ...this.commonProperties(),
-        ...this.nonWritable()
+        ...Entity.prop_protected(),
       });
 
       Object.defineProperty(this, getter_name, {
       	get() {
       		return this[state_name] === this.currentState;
         },
-        ...this.commonProperties(),
-        ...this.nonWritable()
+        ...Entity.prop_protected(),
       });
 
       Object.defineProperty(this, switch_name, {
@@ -29,7 +31,7 @@ export default class StateManager
           this.currentState = this[state_name];
           this.fireEvent(`after${prop_name}StateChange`);
         },
-        ...this.commonProperties(),
+        ...Entity.prop_undeletable(),
       });
 
       i++;
@@ -60,26 +62,4 @@ export default class StateManager
   ucFirst(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-
-  commonProperties() {
-    return {
-      configurable: false,
-      enumerable: true,
-    };
-  }
-
-  nonWritable() {
-    return {
-      set() {
-        throw new StateManagerError(`Trying to write a value into non-writable property`);
-      },
-    };
-  }
-
-
-  currentState = 0;
-}
-
-class StateManagerError extends Error {
-  name = 'StateManagerError';
 }

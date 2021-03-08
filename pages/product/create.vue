@@ -81,11 +81,11 @@ export default {
   methods: {
     successfullyUploaded(res, file) {
       this.image_url = URL.createObjectURL(file.raw);
-      this.product.poster = file;
+      this.product.poster = file.raw;
     },
 
     dataIsValid() {
-      if (!this?.product?.poster?.raw) {
+      if (!this?.product?.poster) {
         this.$noty.error('Необходимо загрузить изображение');
         return false;
       }
@@ -100,13 +100,6 @@ export default {
           'Content-Type': 'multipart/form-data'
         }
       };
-
-      // const formData = new FormData();
-      // formData.append('poster', this.product.poster.raw);
-
-      // for (const prop in this.product) {
-      //   formData.append('poster', this.poster.raw);
-      // }
 
       const product = getFormDataFromObject(this.product);
 

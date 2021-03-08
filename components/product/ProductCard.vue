@@ -20,6 +20,5 @@ export default {
     product: { type: Product }
   },
 
-
 }
 </script>
