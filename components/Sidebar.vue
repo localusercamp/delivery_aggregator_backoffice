@@ -7,7 +7,14 @@
       </div>
     </div>
 
-    <nav>
+    <nav v-if="gettingStarted">
+      <ul>
+        <li><nuxt-link to="/getting-started"><tm-icon type="info" size="small" class="nav-icon"/>Заявка</nuxt-link></li>
+        <li @click="signout()"><a>Выйти</a></li>
+      </ul>
+    </nav>
+
+    <nav v-else>
       <ul>
         <li><nuxt-link to="/product"><tm-icon type="info" size="small" class="nav-icon"/>Продукты</nuxt-link></li>
         <li><nuxt-link to="/dashboard"><tm-icon type="info" size="small" class="nav-icon"/> дэшбоард </nuxt-link></li>
@@ -36,15 +43,10 @@
       ...mapGetters({
         user: 'user/user'
       }),
-      // isCompanyApproved() {
-      //   return !!this.user?.company?.approved_at;
-      // },
-      // isRoleModerator() {
-      //   return this.user.isModerator;
-      // },
-      // canSubscribe() {
-      //   return this.user.isAdmin || this.user.isModerator;
-      // },
+
+      gettingStarted() {
+        return this.user.isProvider && !this.user?.company?.isApproved
+      },
     },
 
     methods: {

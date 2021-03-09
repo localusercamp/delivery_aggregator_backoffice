@@ -12,7 +12,7 @@ export default class IRelationable extends Entity
   loadRelations(relations)
   {
     for (const [name, classname] of Object.entries(relations)) {
-      if (name in this) {
+      if (!!this[name]) {
         this[name] = new classname(this[name]);
       }
     }

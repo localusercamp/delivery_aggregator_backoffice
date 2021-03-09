@@ -16,4 +16,8 @@ export default class Company extends IRelationable
   get isApproved() {
     return this.status_id === Status.APPROVED;
   }
+
+  get isReview() {
+    return this.status_id === Status.REVIEW;
+  }
 }
