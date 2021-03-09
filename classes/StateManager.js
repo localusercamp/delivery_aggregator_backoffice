@@ -15,14 +15,14 @@ export default class StateManager extends Entity
 
       Object.defineProperty(this, state_name, {
         get: () => real_i,
-        ...Entity.prop_protected(),
+        ...StateManager.prop_protected(),
       });
 
       Object.defineProperty(this, getter_name, {
       	get() {
       		return this[state_name] === this.currentState;
         },
-        ...Entity.prop_protected(),
+        ...StateManager.prop_protected(),
       });
 
       Object.defineProperty(this, switch_name, {
@@ -31,7 +31,7 @@ export default class StateManager extends Entity
           this.currentState = this[state_name];
           this.fireEvent(`after${prop_name}StateChange`);
         },
-        ...Entity.prop_undeletable(),
+        ...StateManager.prop_undeletable(),
       });
 
       i++;
@@ -62,4 +62,29 @@ export default class StateManager extends Entity
   ucFirst(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
+
+
+  static prop_protected() {
+    return {
+      ...StateManager.prop_enumerable,
+      ...StateManager.prop_not_configurable,
+      ...StateManager.prop_not_writable,
+    };
+  }
+  static prop_undeletable() {
+    return {
+      ...StateManager.prop_enumerable,
+      ...StateManager.prop_not_configurable,
+    };
+  }
+  static #prop_not_writable = () => ({ set: () => { throw new StateManagerError('Trying to write a value into non-writable property!') } })
+  static #prop_configurable = () => ({configurable: true})
+  static #prop_enumerable   = () => ({enumerable: true})
+  static #prop_not_configurable = () => ({configurable: false})
+  static #prop_not_enumerable   = () => ({enumerable: false})
+}
+
+class StateManagerError extends Error {
+  name = 'StateManagerError';
 }

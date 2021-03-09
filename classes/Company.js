@@ -1,10 +1,19 @@
-import Entity from '~/classes/Entity'
+import IRelationable from '~/classes/IRelationable'
+import Status from './Status'
+import User from './User'
 
-export default class Company extends Entity
+export default class Company extends IRelationable
 {
   constructor(company)
   {
-    super();
-    Object.assign(this, company);
+    super(company, Company.relations);
+  }
+
+  static relations = {
+    // owner: User
+  };
+
+  get isApproved() {
+    return this.status_id === Status.APPROVED;
   }
 }
